@@ -1,20 +1,16 @@
-import EventCard from "@/app/page";
+import React from "react";
 
-class EventGrid {
-  constructor(containerSelector) {
-    this._container = document.querySelector(containerSelector);
-  }
+import EventCard from "../EventCard/EventCard";
 
-  renderItems(events) {
-    this._container.innerHTML = "";
-    events.forEach((event) => {
-      this.addItem(event);
-    });
-  }
+const EventGrid = ({ items }) => {
+  return (
+    <>
+      <EventCard />
+      <EventCard />
+      <EventCard />
+      <EventCard />
+    </>
+  );
+};
 
-  addItem(event) {
-    const eventCard = new EventCard(event);
-    const element = eventCard.render();
-    this._container.append(element);
-  }
-}
+export default EventGrid;
