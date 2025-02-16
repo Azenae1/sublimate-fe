@@ -2,14 +2,17 @@ import React from "react";
 
 import EventCard from "../EventCard/EventCard";
 
-const EventGrid = ({ items }) => {
+const EventGrid = () => {
   return (
-    <>
-      <EventCard />
-      <EventCard />
-      <EventCard />
-      <EventCard />
-    </>
+    <div className="flex justify-center">
+      <div className="flex flex-wrap gap-5 justify-start">
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+        <EventCard />
+      </div>
+    </div>
   );
 };
 
