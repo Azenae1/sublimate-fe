@@ -1,4 +1,5 @@
 import Image from "next/image";
+import game from "../../../public/Tyrants.png";
 
 const EventCard = ({ event = {} }) => {
   const placeholderEvent = {
@@ -16,7 +17,7 @@ const EventCard = ({ event = {} }) => {
       {data.image && (
         <div className="w-full h-40 relative mb-4">
           <Image
-            src={data.image}
+            src={game}
             alt={data.title}
             layout="fill"
             objectFit="cover"
