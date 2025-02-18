@@ -6,10 +6,20 @@ import SignupEventForm from "../SignupEventForm/SignupEventForm";
 const EventCard = ({ event = {} }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({});
+  const [participants, setParticipants] = useState([]);
 
   const handleOpenForm = () => setIsFormOpen(true);
   const handleCloseForm = () => setIsFormOpen(false);
   const handleSubmit = (data) => {
+    const existingParticipant = participants.find(
+      (participant) => participant.telegram === data.telegram
+    );
+    if (existingParticipant) {
+      alert("Этот ник уже зарегистрирован!");
+      return;
+    }
+
+    setParticipants([...participants, data]);
     console.log("Form submitted:", data);
     setFormData(data);
     handleCloseForm();
@@ -44,6 +54,11 @@ const EventCard = ({ event = {} }) => {
     return "часов";
   };
 
+  const getPlaceWord = (participantsMax) => {
+    if (participantsMax >= 2 && participantsMax <= 4) return "места";
+    return "мест";
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-md w-80">
       {data.image && data.image !== "" ? (
@@ -64,13 +79,18 @@ const EventCard = ({ event = {} }) => {
         <p className="text-gray-600 mb-1">
           ⏳ {data.duration} {getHourWord(data.duration)}
         </p>
-        <p className="text-gray-600">
-          👥{" "}
-          {data.participantsMin === data.participantsMax
-            ? data.participantsMin
-            : `${data.participantsMin} - ${data.participantsMax}`}{" "}
-          участников
-        </p>
+        <div className="flex justify-between items-center">
+          <p className="text-gray-600">
+            👥{" "}
+            {data.participantsMin === data.participantsMax
+              ? data.participantsMin
+              : `${data.participantsMin} - ${data.participantsMax}`}{" "}
+            {getPlaceWord(data.participantsMax)}
+          </p>
+          <p className="text-gray-600 mb-1">
+            👥 {participants.length} участников
+          </p>
+        </div>
         {data.notes && <p className="text-gray-600 mt-2">📝 {data.notes}</p>}
         <div className="flex justify-between items-center mt-2">
           <button
