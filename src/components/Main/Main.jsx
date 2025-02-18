@@ -28,14 +28,12 @@ const Main = () => {
       >
         + Создать событие
       </button>
-      <div className="relative flex justify-center p-4">
-        <EventGrid />
-        <div className="grid grid-cols-3 gap-4">
-          {events.map((event, index) => (
-            <EventCard key={index} event={event} />
-          ))}
-        </div>
+      <div className="relative flex justify-center p-4 gap-x-[30px]">
+        {events.map((event, index) => (
+          <EventCard key={index} event={event} />
+        ))}
       </div>
+
       {isFormOpen && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50">
           <div className="bg-white p-6 rounded shadow-lg">

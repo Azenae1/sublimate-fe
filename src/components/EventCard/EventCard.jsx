@@ -45,14 +45,19 @@ const EventCard = ({ event = {} }) => {
           👥 {data.participantsMin} - {data.participantsMax} участников
         </p>
         {data.notes && <p className="text-gray-600 mt-2">📝 {data.notes}</p>}
-        <a
-          href={data.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 mt-2 block"
-        >
-          Перейти по ссылке
-        </a>
+        <div className="flex justify-between items-center mt-2">
+          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+            Записаться
+          </button>
+          <a
+            href={data.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            Про игру
+          </a>
+        </div>
       </div>
     </div>
   );
