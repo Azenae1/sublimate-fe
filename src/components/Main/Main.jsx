@@ -29,9 +29,11 @@ const Main = () => {
         + Создать событие
       </button>
       <div className="relative flex justify-center p-4 gap-x-[30px]">
-        {events.map((event, index) => (
-          <EventCard key={index} event={event} />
-        ))}
+        {events
+          .sort((a, b) => new Date(b.startTime) - new Date(a.startTime)) // Sort by startTime in descending order
+          .map((event, index) => (
+            <EventCard key={index} event={event} />
+          ))}
       </div>
 
       {isFormOpen && (

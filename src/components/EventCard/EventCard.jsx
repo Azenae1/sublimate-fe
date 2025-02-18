@@ -42,7 +42,11 @@ const EventCard = ({ event = {} }) => {
         <p className="text-gray-600 mb-1">📍 {data.location}</p>
         <p className="text-gray-600 mb-1">🕒 {formattedStartTime}</p>
         <p className="text-gray-600">
-          👥 {data.participantsMin} - {data.participantsMax} участников
+          👥{" "}
+          {data.participantsMin === data.participantsMax
+            ? data.participantsMin
+            : `${data.participantsMin} - ${data.participantsMax}`}{" "}
+          участников
         </p>
         {data.notes && <p className="text-gray-600 mt-2">📝 {data.notes}</p>}
         <div className="flex justify-between items-center mt-2">
