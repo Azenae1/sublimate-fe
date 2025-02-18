@@ -8,6 +8,7 @@ const CreateEventForm = ({ onSubmit }) => {
     link: "",
     startTime: new Date(),
     location: "",
+    duration: "",
     participantsMin: "",
     participantsMax: "",
     notes: "",
@@ -54,6 +55,22 @@ const CreateEventForm = ({ onSubmit }) => {
         onChange={(date) => setFormData({ ...formData, startTime: date })}
         showTimeSelect
         dateFormat="Pp"
+        minDate={new Date()}
+        minTime={
+          formData.startTime?.toDateString() === new Date().toDateString()
+            ? new Date()
+            : new Date(0, 0, 0, 0, 0)
+        }
+        maxTime={new Date(0, 0, 0, 23, 59)}
+        className="w-full p-2 border rounded"
+      />
+      <input
+        type="text"
+        name="duration"
+        placeholder="Время партии (в часах)"
+        value={formData.duration}
+        onChange={handleChange}
+        required
         className="w-full p-2 border rounded"
       />
       <input

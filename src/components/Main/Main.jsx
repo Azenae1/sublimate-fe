@@ -26,7 +26,7 @@ const Main = () => {
         onClick={handleOpenForm}
         className="absolute top-4 right-4 p-2 bg-blue-500 text-white rounded"
       >
-        + Создать событие
+        Создать событие
       </button>
       <div className="relative flex justify-center p-4 gap-x-[30px]">
         {events

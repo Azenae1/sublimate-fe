@@ -23,6 +23,12 @@ const EventCard = ({ event = {} }) => {
           hour12: false,
         })
       : "Invalid Date";
+  const getHourWord = (duration) => {
+    const num = parseInt(duration.toString().split("-").pop(), 10); // Берём последнее число
+    if (num === 1) return "час";
+    if (num >= 2 && num <= 4) return "часа";
+    return "часов";
+  };
 
   return (
     <div className="bg-white rounded-2xl shadow-md w-80">
@@ -40,7 +46,10 @@ const EventCard = ({ event = {} }) => {
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{data.title}</h2>
         <p className="text-gray-600 mb-1">📍 {data.location}</p>
-        <p className="text-gray-600 mb-1">🕒 {formattedStartTime}</p>
+        <p className="text-gray-600 mb-1">📅 {formattedStartTime}</p>
+        <p className="text-gray-600 mb-1">
+          ⏳ {data.duration} {getHourWord(data.duration)}
+        </p>
         <p className="text-gray-600">
           👥{" "}
           {data.participantsMin === data.participantsMax
