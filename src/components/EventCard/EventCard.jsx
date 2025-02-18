@@ -3,34 +3,56 @@ import Image from "next/image";
 const EventCard = ({ event = {} }) => {
   const placeholderEvent = {
     title: "Название события",
+    link: "#", // Default link if not provided
     image: "/placeholder.jpg",
     location: "Место проведения",
     startTime: "00:00",
-    participants: { min: 1, max: 10 },
+    participantsMin: 1,
+    participantsMax: 10,
+    notes: "", // Optional notes
   };
 
   const data = { ...placeholderEvent, ...event };
+  const formattedStartTime =
+    data.startTime instanceof Date
+      ? data.startTime.toLocaleString("ru-RU", {
+          day: "2-digit",
+          month: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        })
+      : "Invalid Date";
 
   return (
     <div className="bg-white rounded-2xl shadow-md w-80">
-      {data.image && (
+      {data.image && data.image !== "" ? (
         <div className="w-full h-40 relative overflow-hidden">
           <Image
-            src={data.image}
+            src={data.image || "/placeholder.jpg"}
             alt={data.title}
             layout="fill"
             objectFit="cover"
             className="rounded-t-2xl"
           />
         </div>
-      )}
+      ) : null}
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{data.title}</h2>
         <p className="text-gray-600 mb-1">📍 {data.location}</p>
-        <p className="text-gray-600 mb-1">🕒 {data.startTime}</p>
+        <p className="text-gray-600 mb-1">🕒 {formattedStartTime}</p>
         <p className="text-gray-600">
           👥 {data.participantsMin} - {data.participantsMax} участников
         </p>
+        {data.notes && <p className="text-gray-600 mt-2">📝 {data.notes}</p>}
+        <a
+          href={data.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 mt-2 block"
+        >
+          Перейти по ссылке
+        </a>
       </div>
     </div>
   );

@@ -20,7 +20,8 @@ const CreateEventForm = ({ onSubmit }) => {
   };
 
   const handleImageChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    const file = e.target.files[0];
+    setFormData({ ...formData, image: file });
   };
 
   const handleSubmit = (e) => {
@@ -81,7 +82,7 @@ const CreateEventForm = ({ onSubmit }) => {
           placeholder="Макс. участники"
           value={formData.participantsMax}
           onChange={handleChange}
-          min="2"
+          min={formData.participantsMin || "2"}
           max="20"
           required
           className="w-full p-2 border rounded"
