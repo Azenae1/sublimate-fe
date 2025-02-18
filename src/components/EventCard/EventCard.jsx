@@ -1,12 +1,16 @@
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import SignupEventForm from "../SignupEventForm/SignupEventForm";
 
 const EventCard = ({ event = {} }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const [formData, setFormData] = useState({});
   const [participants, setParticipants] = useState([]);
+
+  const handleHover = () => setShowTooltip(true);
+  const handleMouseLeave = () => setShowTooltip(false);
 
   const handleOpenForm = () => setIsFormOpen(true);
   const handleCloseForm = () => setIsFormOpen(false);
@@ -87,9 +91,24 @@ const EventCard = ({ event = {} }) => {
               : `${data.participantsMin} - ${data.participantsMax}`}{" "}
             {getPlaceWord(data.participantsMax)}
           </p>
-          <p className="text-gray-600 mb-1">
-            👥 {participants.length} участников
-          </p>
+          <span
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
+            className="relative cursor-pointer"
+          >
+            {participants.length} участников
+            {showTooltip && (
+              <div className="absolute left-0 mt-2 p-2 bg-gray-700 text-white rounded shadow-lg w-48 z-10">
+                <ul className="list-none">
+                  {participants.map((p, index) => (
+                    <li key={index}>
+                      {p.name}@{p.telegram}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </span>
         </div>
         {data.notes && <p className="text-gray-600 mt-2">📝 {data.notes}</p>}
         <div className="flex justify-between items-center mt-2">
