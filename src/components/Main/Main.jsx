@@ -38,14 +38,17 @@ const Main = () => {
 
       {isFormOpen && (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50">
-          <div className="bg-white p-6 rounded shadow-lg">
-            <CreateEventForm onSubmit={handleSubmit} />
+          <div className="bg-white p-8 rounded shadow-lg relative w-[640px]">
             <button
               onClick={handleCloseForm}
-              className="mt-4 p-2 bg-red-500 text-white rounded"
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-lg"
             >
-              Закрыть
+              ✖
             </button>
+            <h2 className="text-xl font-bold mb-4 text-center">
+              Создание события
+            </h2>
+            <CreateEventForm onSubmit={handleSubmit} />
           </div>
         </div>
       )}

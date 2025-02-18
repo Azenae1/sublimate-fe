@@ -41,15 +41,7 @@ const CreateEventForm = ({ onSubmit }) => {
         required
         className="w-full p-2 border rounded"
       />
-      <input
-        type="url"
-        name="link"
-        placeholder="Ссылка"
-        value={formData.link}
-        onChange={handleChange}
-        // required
-        className="w-full p-2 border rounded"
-      />
+
       <DatePicker
         selected={formData.startTime}
         onChange={(date) => setFormData({ ...formData, startTime: date })}
@@ -76,7 +68,7 @@ const CreateEventForm = ({ onSubmit }) => {
       <input
         type="text"
         name="location"
-        placeholder="Место"
+        placeholder="Место проведения"
         value={formData.location}
         onChange={handleChange}
         required
@@ -105,6 +97,15 @@ const CreateEventForm = ({ onSubmit }) => {
           className="w-full p-2 border rounded"
         />
       </div>
+      <input
+        type="url"
+        name="link"
+        placeholder="Ссылка"
+        value={formData.link}
+        onChange={handleChange}
+        // required
+        className="w-full p-2 border rounded"
+      />
       <textarea
         name="notes"
         placeholder="Примечание (опционально)"
