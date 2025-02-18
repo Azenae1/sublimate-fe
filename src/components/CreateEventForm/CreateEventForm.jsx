@@ -8,8 +8,8 @@ const CreateEventForm = ({ onSubmit }) => {
     link: "",
     startTime: new Date(),
     location: "",
-    participantsMin: 2,
-    participantsMax: 20,
+    participantsMin: "",
+    participantsMax: "",
     notes: "",
     image: null,
   });
@@ -45,7 +45,7 @@ const CreateEventForm = ({ onSubmit }) => {
         placeholder="Ссылка"
         value={formData.link}
         onChange={handleChange}
-        required
+        // required
         className="w-full p-2 border rounded"
       />
       <DatePicker
@@ -81,6 +81,7 @@ const CreateEventForm = ({ onSubmit }) => {
           placeholder="Макс. участники"
           value={formData.participantsMax}
           onChange={handleChange}
+          min="2"
           max="20"
           required
           className="w-full p-2 border rounded"
@@ -96,6 +97,7 @@ const CreateEventForm = ({ onSubmit }) => {
       <input
         type="file"
         name="image"
+        placeholder="Добавить фото"
         accept="image/*"
         onChange={handleImageChange}
         className="w-full p-2 border rounded"

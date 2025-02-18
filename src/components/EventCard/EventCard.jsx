@@ -1,5 +1,4 @@
 import Image from "next/image";
-import game from "../../../public/Tyrants.png";
 
 const EventCard = ({ event = {} }) => {
   const placeholderEvent = {
@@ -17,7 +16,7 @@ const EventCard = ({ event = {} }) => {
       {data.image && (
         <div className="w-full h-40 relative overflow-hidden">
           <Image
-            src={game}
+            src={data.image}
             alt={data.title}
             layout="fill"
             objectFit="cover"
@@ -30,7 +29,7 @@ const EventCard = ({ event = {} }) => {
         <p className="text-gray-600 mb-1">📍 {data.location}</p>
         <p className="text-gray-600 mb-1">🕒 {data.startTime}</p>
         <p className="text-gray-600">
-          👥 {data.participants.min} - {data.participants.max} участников
+          👥 {data.participantsMin} - {data.participantsMax} участников
         </p>
       </div>
     </div>
